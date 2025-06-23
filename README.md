@@ -8,12 +8,12 @@ This repository contains SAS programs and datasets for mapping Adverse Event (AE
 
 ## 🔹 1. Raw Data
 
-- `raw/raw_ae_import.sas` – SAS code to create the raw AE dataset  
+- `raw/raw_ae_import.sas.txt` – SAS code to create the raw AE dataset  
 - `raw/raw_ae_data.xlsx` – Excel version of the raw AE dataset
 
 ## 🔹 2. Mapping
 
-- `mapping/ae_mapping.sas` – SAS program to map raw AE data to SDTM structure  
+- `mapping/ae_mapping.sas.txt` – SAS program to map raw AE data to SDTM structure  
 - `mapping/ae_mapping_spec.xlsx` – Mapping specification document
 
 ## 🔹 3. Output
