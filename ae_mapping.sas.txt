@@ -1,0 +1,32 @@
+Data map_ae;
+retain USUBJID DOMAIN AETERM AEACN AESER AESEV AESCAN AESCONG AEREL AEOUT ;
+set ae;
+ATTRIB 
+       USUBJID   LENGTH=$12   label="Uniquie Subject Identifier"
+       DOMAIN    LENGTH=$2    label="Domain Abbrevation"
+       AEACN     LENGTH=$15   label="Action Taken with Study Treatment"
+       AESER     LENGTH=$1    label="Serious Event"
+       AESCAN    LENGTH=$1    label="Involves Cancer"
+       AESCONG   LENGTH=$1    label="Congenital Anomaly or Birth Defect"
+       AEREL     LENGTH=$16   label="Causality"
+       TERM      LENGTH=$ 12  label="Reported Term for the Adverse Event"
+       SEVERE    LENGTH=$8    label="Severity/Intensity"
+       OUT       LENGTH=$20   label="Outcome of Adverse Event"
+; 
+             
+   USUBJID=catx("-",study_id,site_id,subjid);
+If ACTION="NA" THEN AEACN="NOT APPLICABLE";
+   ELSE IF ACTION="DR" THEN AEACN="DOSE REDUCED";
+If SERIOUS="YES" THEN AESER="Y"; 
+   ELSE IF SERIOUS="NO" THEN AESER="N";
+If REL="REL" THEN AEREL="RELATED";  
+IF REL="PREL" THEN AEREL="PROBABLY RELATED";
+   else if REL="NREL" THEN AEREL="NOT RELATED"; 
+if SCAN ="YES" THEN AESCAN ="Y" ;
+   ELSE IF SCAN  ="NO" THEN AESCAN ="N";
+if SCONG ="YES" THEN AESCONG ="Y" ;
+   ELSE IF SCONG  ="NO" THEN  AESCONG="N";
+DROP STUDY_ID SITE_ID SUBJID action serious rel scan scong ;
+Rename TERM=AETERM OUT=AEOUT SEVERE=AESEV;
+RUN;
+
