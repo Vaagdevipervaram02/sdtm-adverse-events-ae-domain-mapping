@@ -1,0 +1,61 @@
+data AE;                          /* When you write:data AE;You're telling SAS:“I want to create a new dataset named AE.”
+attrib                            /* Assigns attributes like length, label, format(sometimes it also helps in arranging variables as per user requirements) */
+    DOMAIN    length=$2           /* "AE" domain ID  */
+    STUDY_ID  length=$5           /* Study identifier-specific to study */
+    SITE_ID   length=$3           /* Site identifier-site where trials takes place */
+    SUBJID    length=$5           /* Subject ID-Specific to subject */
+    TERM      length=$20          /* AE term-name of the event.(e.g., Headache, Nausea) */
+    ACTION    length=$20          /* Action taken (e.g., DR = Dose Reduced) */
+    SERIOUS   length=$3           /* Is it serious? YES/NO */
+    SEVERE    length=$8           /* Severity (e.g., Mild, Moderate, Severe) */
+    SCAN      length=$3           /* Leads to Cancer? YES/NO */
+    SCONG     length=$3           /* Congenital Anomaly or Birth Defect? YES/NO */
+    REL       length=$15          /* Any Causality */
+    OUT       length=$20;         /* Outcome (e.g., Recovered/Resolved) */
+;
+INPUT                             /* INPUT
+DOMAIN $                          /* statement lists all the variables you’re going to read from the raw data in DATALINES. */
+STUDY_ID $                        /* You're telling SAS:"These are the variable names and what kind of data they hold */
+SITE_ID $
+SUBJID $
+TERM $
+ACTION $
+SERIOUS $
+SEVERE $
+SCAN $
+SCONG $
+REL $
+OUT $ ;
+DATALINES;                        /* It tells SAS: “Start reading data from the next line onward until you see a semicolon (;).” */
+
+
+         
+AE 101 SP1 201 Nausea NA NO Severe NO YES REL Recovered/Resolved            /* these are the data which are separated by space each space separates the data into individual variable*/
+AE 101 SP1 202 Headache DR YES Moderate NO YES PREL Recovered/Resolved
+AE 101 SP1 204 Fever NA NO Mild NO NO NREL Recovered/Resolved
+AE 101 SP1 201 Vomting NA YES Mild YES NO REL Recovered/Resolved
+AE 101 SP1 204 Bodypains DR NO Severe YES YES PREL Recovered/Resolved
+AE 101 SP1 203 Fever DR NO Moderate NO YES PREL Recovered/Resolved
+AE 101 SP1 201 Stomachache NA NO Mild NO NO REL Recovered/Resolved
+AE 101 SP1 202 Nausea DR YES Mild NO YES NREL Recovered/Resolved
+AE 101 SP1 203 Backpain NA YES Severe YES NO REL Recovered/Resolved
+AE 101 SP1 201 Diarrhea NA YES Severe NO YES PREL Recovered/Resolved
+AE 101 SP1 204 Nausea DR NO Moderate NO YES REL Recovered/Resolved
+AE 101 SP1 203 Vomting DR NO Moderate YES YES NREL Recovered/Resolved
+;
+RUN;                             /* In SAS, the keyword "RUN;" is used to execute a block of code you've written Without RUN;, SAS might not process your code. */
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
